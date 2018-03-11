@@ -356,3 +356,22 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.list-container {
+    color: aliceblue;
+    background-color: blueviolet;
+    padding: 15px;
+
+}
+
+.list-container__list-group {
+        color: #333;
+        background-color: yellow;
+        padding: 15px;
+        list-style-type: none;
+    }
+
+.list-container__list-item {
+        background-color: red;
+        cursor: pointer;
+    }

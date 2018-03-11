@@ -987,24 +987,47 @@ function fetchFlights(lat, lng) {
 
     axios.get(url)
         .then(function (response) {
-            console.log('Da, da! Radi!');
 
             for (var i = 0; i < response.data.acList.length; i++) {
                 flights.push(response.data.acList[i]);
             }
 
+            flights.sort(function(a, b) {
+                return b.Alt - a.Alt;
+            });
+
             console.log(flights);
-            document.querySelector('.list').innerHTML = '';
+            document.querySelector('.list-container__list-group').innerHTML = '';
 
             for (var i = 0; i < flights.length; i++) {
-                document.querySelector('.list').innerHTML += '<li class="list-item-' + i + '"><p>' + flights[i].Alt + '</p><br>' + '<p>' + flights[i].Call + '</p></li>';
+                document.querySelector('.list-container__list-group').innerHTML += '<li class="list-container__list-item list-container__list-item--' + i + '"><p>' + flights[i].Alt + '</p>' + '<p>' + flights[i].Call + '</p></li>';
             }
+
+            var listItems = document.querySelector('.list-container__list-group').childNodes;
+            console.log(listItems);
+
+            for (var e = 0; e < listItems.length; e++) {
+                addEvent(listItems[e], "click", showList);
+            }
+            
         })
         .catch(function (error) {
             console.log(error);
-            console.log('Ne, ne! Ne radi!');
         });
 }
+
+function showList(event) {
+    console.log(event.target);
+}
+
+function addEvent(element, event_name, func) {
+    if (element.addEventListener) {
+        element.addEventListener(event_name, func, false); 
+    } else if (element.attachEvent)  {
+        element.attachEvent("on"+event_name, func);
+    }
+}
+
 
 /***/ }),
 /* 9 */
