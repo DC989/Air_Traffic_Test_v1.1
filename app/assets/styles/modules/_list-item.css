@@ -1,0 +1,22 @@
+.list-item {
+    background-color: red;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__logo {
+        pointer-events: none;
+    }
+
+    &__altitude {
+        pointer-events: none;
+    }
+
+    &__flight-code {
+        pointer-events: none;
+    }
+}

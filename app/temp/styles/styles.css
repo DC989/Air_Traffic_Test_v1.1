@@ -358,20 +358,31 @@ img {
 }
 
 .list-container {
-    color: aliceblue;
+    list-style: none;
+    padding: .5rem;
+    color: white;
     background-color: blueviolet;
-    padding: 15px;
-
 }
 
-.list-container__list-group {
-        color: #333;
-        background-color: yellow;
-        padding: 15px;
-        list-style-type: none;
+.list-item {
+    background-color: red;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.list-item:last-child {
+        margin-bottom: 0;
     }
 
-.list-container__list-item {
-        background-color: red;
-        cursor: pointer;
+.list-item__logo {
+        pointer-events: none;
+    }
+
+.list-item__altitude {
+        pointer-events: none;
+    }
+
+.list-item__flight-code {
+        pointer-events: none;
     }

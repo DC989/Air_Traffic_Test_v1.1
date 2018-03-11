@@ -1,18 +1,6 @@
 .list-container {
-    color: aliceblue;
+    list-style: none;
+    padding: .5rem;
+    color: white;
     background-color: blueviolet;
-    padding: 15px;
-
-    &__list-group {
-        color: #333;
-        background-color: yellow;
-        padding: 15px;
-        list-style-type: none;
-    }
-
-    &__list-item {
-        background-color: red;
-        cursor: pointer;
-    }
-
 }
