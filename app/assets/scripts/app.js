@@ -46,7 +46,7 @@ function showError(error) {
 
 function fetchFlights(lat, lng) {
     flights = []
-    var url = 'https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=' + lat + '&lng=' + lng + '&fDstL=0&fDstU=300';
+    var url = 'https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=' + lat + '&lng=' + lng + '&fDstL=0&fDstU=200';
 
     axios.get(url)
         .then(function (response) {
