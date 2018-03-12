@@ -18,30 +18,23 @@
 <body>
     <header class="large-hero">
         <picture>
-            <source>
-            <img src="" alt="">
+            <source srcset="assets/images/hero-large-min.jpg 1941w, assets/images/hero-large-hi-dpi-min.jpg 3882w" media="(min-width: 1401px)">
+            <source srcset="assets/images/hero-medium-min.jpg 1401w, assets/images/hero-medium-hi-dpi-min.jpg 2802w" media="(min-width: 1000px)">
+            <source srcset="assets/images/hero-small-min.jpg 1000w, assets/images/hero-small-hi-dpi-min.jpg 1999w" media="(min-width: 780px)">
+            <img srcset="assets/images/hero-smaller-min.jpg 780w, assets/images/hero-smaller-hi-dpi-min.jpg 1559w" alt="Airplane flying">
         </picture>
-        <h1 class="large-hero__title">Air Traffic Test v1.1</h1>
     </header>
 
-    <a href="#flights">Flights</a>
-    <a href="#flights-info">Flights Info</a>
-
     <main id="view">
-
         <section id="flights">
             <ul class="list-container"></ul>
         </section>
 
-        <section id="flights-info">
-            <h3>Flights Info</h3>
-        </section>
-
+        <section class="flights-info"></section>
     </main>
 
 
 
-    <script src="//unpkg.com/navigo@6"></script>
     <script src="temp/scripts/app.js"></script>
 </body>
 

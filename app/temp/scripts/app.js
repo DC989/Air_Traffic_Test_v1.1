@@ -940,11 +940,13 @@ module.exports = Cancel;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-//var getGeolocation = require('./modules/geolocation');
 var axios = __webpack_require__(9);
 var listGroup;
 var flights = [];
-var flightsInfo = document.getElementById('flights-info');
+var flightsDiv = document.getElementById('flights');
+var flightsInfoDiv = document.querySelector('.flights-info');
+
+flightsInfoDiv.style.display = "none";
 
 getLocation();
 
@@ -957,8 +959,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
+    //console.log(position.coords.latitude);
+    //console.log(position.coords.longitude);
 
     fetchFlights(position.coords.latitude, position.coords.longitude);
 
@@ -985,7 +987,8 @@ function showError(error) {
 };
 
 function fetchFlights(lat, lng) {
-    var url = 'https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=' + lat + '&lng=' + lng + '&fDstL=0&fDstU=200';
+    flights = []
+    var url = 'https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=' + lat + '&lng=' + lng + '&fDstL=0&fDstU=300';
 
     axios.get(url)
         .then(function (response) {
@@ -1008,11 +1011,19 @@ function fetchFlights(lat, lng) {
             document.querySelector('.list-container').innerHTML = '';
 
             for (var i = 0; i < flights.length; i++) {
-                document.querySelector('.list-container').innerHTML += '<li id="' + i + '" class="list-item list-item--' + i + '"><img class="list-item__logo" src="" alt=""><p class="list-item__altitude">' + flights[i].Alt + '</p><p class="list-item__flight-code">' + flights[i].Call + '</p></li>';
+                document.querySelector('.list-container').innerHTML += '<li id="' + i + '" class="list-item list-item--' + i + '"><img class="list-item__logo list-item__logo--' + i + '" src="" alt="Airplane icon"><p class="list-item__altitude">Altitude: ' + flights[i].Alt + '</p><p class="list-item__flight-code">Flight Code Number: ' + flights[i].Call + '</p></li>';
+
+                if(flights[i].Long > 0) {
+                    document.querySelector('.list-item__logo--' + i).src = 'assets/images/east.png';
+                    //console.log('East!!!');
+                } else if (flights[i].Long < 0) {
+                    document.querySelector('.list-item__logo--' + i).src = 'assets/images/west.png';
+                    //console.log('West!!!');
+                }
             }
 
             var listItems = document.querySelector('.list-container').childNodes;
-            console.log(listItems);
+            //console.log(listItems);
 
             for (var e = 0; e < listItems.length; e++) {
                 addEvent(listItems[e], "click", showList);
@@ -1030,7 +1041,17 @@ function fetchFlights(lat, lng) {
 function showList() {
     //var id = event.target.id;
     //var convertedId = parseInt(id.substring(7, 8));
-    flightsInfo.innerHTML = '<p>' + flights[event.target.id].Man + '</p><p>' + flights[event.target.id].Mdl + '</p><p>' + flights[event.target.id].To + '</p><p>' + flights[event.target.id].From + '</p><p>' + flights[event.target.id].Op + '</p>';
+
+    flightsInfoDiv.innerHTML = '<div class="flights-info__content"><p><em>Airplane Manufacturer:</em> <strong>' + flights[event.target.id].Man + '</strong></p><p><em>Airplane Model:</em> <strong>' + flights[event.target.id].Mdl + '</strong></p><p><em>Destination:</em> <strong>' + flights[event.target.id].To + '</strong></p><p><em>Origin:</em> <strong>' + flights[event.target.id].From + '</strong></p><p><em>Airline Company:</em> <strong>' + flights[event.target.id].Op + '</strong></p><img src="//logo.clearbit.com/' + flights[event.target.id].Op + '.com"></div><button class="btn" type="button">Go Back To All Flights</button>';
+
+    document.querySelector('.btn').addEventListener('click', function() {
+        flightsInfoDiv.style.display = "none";
+        flightsDiv.style.display = "block";
+    });
+
+    flightsInfoDiv.style.display = "block";
+    flightsDiv.style.display = "none";
+
     console.log(event.target.id);
 }
 
@@ -1041,89 +1062,6 @@ function addEvent(element, event_name, func) {
         element.attachEvent("on" + event_name, func);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* -------------------------------------- */
-/* ----------Building JS Router---------- */
-/* -------------------------------------- */
-
-/*
-var view = document.querySelector('.list-container');
-
-var Router = function(name, routes) {
-    return {
-        name: name,
-        routes: routes
-    }
-};
-
-var myFirstRouter = new Router('myFirstRouter', [
-    {
-        path: '/',
-        name: 'Root'
-    },
-    {
-        path: '/flightInfo',
-        name: 'flightInfo'
-    }
-]);
-
-var currentPath = window.location.pathname;
-
-if(currentPath === '/flightInfo') {
-    view.innerHTML = '<h1>Welcome to Flights Info Page!</h1>';
-}
-
-console.log(currentPath);
-console.log(myFirstRouter);
-*/
-
-
-// #flights
-// #flights-info
-
-
-var root = null;
-var useHash = false; // Defaults to: false
-var hash = '#'; // Defaults to: '#'
-var router = new Navigo(root, useHash);
-
-var view = document.getElementById('view');
-
-router
-  .on({
-    '/#': function () {
-        view.innerHTML = '';
-    },
-    '/#flights-info': function () {
-        view.innerHTML = '';
-    }
-  })
-  .resolve();
-
-  console.log(window.location);
 
 /***/ }),
 /* 9 */

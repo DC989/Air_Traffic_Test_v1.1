@@ -1,6 +1,11 @@
 .list-container {
+    display: grid;
     list-style: none;
-    padding: .5rem;
-    color: white;
-    background-color: blueviolet;
+    grid-gap: 10px 10px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: auto;
+    }
 }

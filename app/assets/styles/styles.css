@@ -1,5 +1,8 @@
 @import 'normalize.css';
 @import 'base/_variables';
 @import 'base/_global';
+@import 'modules/_view';
 @import 'modules/_list-container';
 @import 'modules/_list-item';
+@import 'modules/_flights-info';
+@import 'modules/_btn';

@@ -1,9 +1,13 @@
 /* -------------------- */
 /* Global CSS */
 /* -------------------- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    color: $mainOrange;
 }
 
 img {

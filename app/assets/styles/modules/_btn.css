@@ -1,0 +1,6 @@
+.btn {
+    background-color: $mainBlue;
+    padding: 10px;
+    border: 0;
+    color: white;
+}

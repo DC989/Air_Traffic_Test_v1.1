@@ -347,9 +347,13 @@ template {
 
 /* -------------------- */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    color: #d59541;
 }
 
 img {
@@ -357,25 +361,50 @@ img {
     height: auto;
 }
 
-.list-container {
-    list-style: none;
-    padding: .5rem;
-    color: white;
-    background-color: blueviolet;
+#view {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+@media (max-width: 768px) {
+
+#view {
+        padding-left: 10px;
+        padding-right: 10px
+}
+    }
+
+.list-container {
+    display: grid;
+    list-style: none;
+    grid-gap: 10px 10px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+
+.list-container {
+        grid-template-columns: auto
+}
+    }
+
 .list-item {
-    background-color: red;
     cursor: pointer;
     padding: 10px;
-    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+    border: solid 1px black;
 }
 
 .list-item:last-child {
-        margin-bottom: 0;
+        
     }
 
 .list-item__logo {
+        height: 30px;
         pointer-events: none;
     }
 
@@ -386,3 +415,21 @@ img {
 .list-item__flight-code {
         pointer-events: none;
     }
+
+.flights-info {
+    background-color: lightgrey;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.flights-info__content {
+        margin-bottom: 20px;
+    }
+
+.btn {
+    background-color: #2f5572;
+    padding: 10px;
+    border: 0;
+    color: white;
+}

@@ -1,14 +1,17 @@
 .list-item {
-    background-color: red;
     cursor: pointer;
     padding: 10px;
-    margin-bottom: 15px;
+    color: $mainGrey;
+    text-align: center;
+    font-size: 1.2rem;
+    border: solid 1px black;
 
     &:last-child {
-        margin-bottom: 0;
+        
     }
 
     &__logo {
+        height: 30px;
         pointer-events: none;
     }
 

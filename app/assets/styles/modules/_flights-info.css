@@ -1,0 +1,10 @@
+.flights-info {
+    background-color: lightgrey;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+
+    &__content {
+        margin-bottom: 20px;
+    }
+}
